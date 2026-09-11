@@ -30,13 +30,13 @@ export function TitleScreen() {
         <p className="mb-2 font-mono text-xs font-medium tracking-[0.28em] text-accent uppercase">ROACH arcade</p>
         <h1 className="font-display text-6xl leading-none tracking-wide text-fg sm:text-8xl">GUNK</h1>
         <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted sm:mt-4 sm:text-base">
-          Pong with a smear. Drop paper $ROACH in the pit \u2014 first to five, or cash a rally. Buy live on Atmos when you want the real thing.
+          Pong with a smear. Drop paper $ROACH in the pit - first to five, or cash a rally. Buy live on Atmos when you want the real thing.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:mt-8">
           <Button size="lg" className="w-full" onClick={() => { unlockAudio(); setScreen("mode"); }}>Enter the pit</Button>
           <Button size="lg" variant="ghost" className="w-full" onClick={() => setScreen("buy")}>Buy $ROACH</Button>
           {broke && !live ? (
-            <Button size="lg" variant="muted" className="w-full" onClick={() => dumpsterDive()}>Dumpster dive \u00b7 +{DUMPSTER_DIVE}</Button>
+            <Button size="lg" variant="muted" className="w-full" onClick={() => dumpsterDive()}>Dumpster dive +{DUMPSTER_DIVE}</Button>
           ) : null}
           <button type="button" className="mt-1 font-mono text-xs tracking-[0.2em] text-muted uppercase" onClick={() => setScreen("rules")}>House rules</button>
         </div>
@@ -44,8 +44,8 @@ export function TitleScreen() {
       <footer className="relative z-10 mt-auto space-y-3 pb-2">
         <p className="font-mono text-xs tabular-nums text-faint">
           {stats.played === 0
-            ? live ? "Live vault. Buys land from Atmos." : "Vault starts at 1,000 paper ROACH. Play now \u2014 connect StarKey to buy live."
-            : `${stats.won}W \u00b7 ${stats.lost}L \u00b7 wagered ${formatChips(stats.totalWagered)}`}
+            ? live ? "Live vault. Buys land from Atmos." : "Vault starts at 1,000 paper ROACH. Play now - connect StarKey to buy live."
+            : `${stats.won}W / ${stats.lost}L / wagered ${formatChips(stats.totalWagered)}`}
         </p>
         {history.length > 0 ? (
           <ul className="flex flex-col gap-1">
@@ -87,7 +87,7 @@ export function ModeScreen() {
         <button type="button" onClick={() => pick("hotseat")} className="min-h-14 text-left">
           <Panel className="flex items-start gap-3 transition-colors duration-150 hover:bg-raised">
             <span className="flex size-11 shrink-0 items-center justify-center rounded-md bg-raised text-accent"><Users className="size-5" /></span>
-            <span className="min-w-0"><span className="block font-medium text-fg">Hotseat</span><span className="mt-1 block text-sm leading-relaxed text-muted">Two scrapers, one glass. Vault stays out of it \u2014 settle in person.</span></span>
+            <span className="min-w-0"><span className="block font-medium text-fg">Hotseat</span><span className="mt-1 block text-sm leading-relaxed text-muted">Two scrapers, one glass. Vault stays out of it - settle in person.</span></span>
           </Panel>
         </button>
       </div>
@@ -127,7 +127,7 @@ export function WagerScreen() {
                       <span className="font-medium text-fg">{o.name}</span>
                       <span className="font-mono text-sm tabular-nums text-accent">{formatOdds(o.odds)}</span>
                     </div>
-                    <p className="mt-0.5 text-xs text-muted sm:text-sm">{o.tag} \u00b7 {o.blurb}</p>
+                    <p className="mt-0.5 text-xs text-muted sm:text-sm">{o.tag} - {o.blurb}</p>
                   </Panel>
                 </button>
               ))}
@@ -145,7 +145,7 @@ export function WagerScreen() {
                       <span className="font-medium text-fg">{t.name}</span>
                       <span className="font-mono text-sm tabular-nums text-accent">{formatOdds(t.odds)}</span>
                     </div>
-                    <p className="mt-0.5 text-xs text-muted sm:text-sm">{t.hits} hits \u00b7 {t.blurb}</p>
+                    <p className="mt-0.5 text-xs text-muted sm:text-sm">{t.hits} hits - {t.blurb}</p>
                   </Panel>
                 </button>
               ))}
@@ -233,11 +233,11 @@ export function ResultScreen() {
           <p className="mt-4 text-base text-muted">Honor table. Vault untouched.</p>
         )}
         <p className="mt-3 font-mono text-sm tabular-nums text-muted">
-          {result.mode === "rally" ? `${result.hits} hits` : `${result.you} \u2014 ${result.them} \u00b7 ${result.hits} hits`}
+          {result.mode === "rally" ? `${result.hits} hits` : `${result.you} - ${result.them} / ${result.hits} hits`}
         </p>
       </div>
       <div className="gunk-dock relative z-10 flex flex-col gap-3 pb-2">
-        {broke && !live ? <Button size="lg" variant="muted" className="w-full" onClick={() => dumpsterDive()}>Dumpster dive \u00b7 +{DUMPSTER_DIVE}</Button> : null}
+        {broke && !live ? <Button size="lg" variant="muted" className="w-full" onClick={() => dumpsterDive()}>Dumpster dive +{DUMPSTER_DIVE}</Button> : null}
         {broke && live ? <Button size="lg" variant="muted" className="w-full" onClick={() => setScreen("buy")}>Buy $ROACH</Button> : null}
         <Button size="lg" className="w-full" disabled={!canRematch} onClick={rematch}>Same table</Button>
         <Button size="lg" variant="ghost" className="w-full" onClick={() => setScreen("mode")}>Change table</Button>
@@ -258,8 +258,8 @@ export function RulesScreen() {
       </header>
       <article className="relative z-10 flex-1 space-y-6 overflow-y-auto py-5">
         <h2 className="font-display text-4xl tracking-wide text-fg">House rules</h2>
-        <section><h3 className="mb-2 text-sm font-medium text-fg">The smear</h3><p className="text-sm leading-relaxed text-muted">Keep the gunk blob on your side of the glass. First to five takes the pit. Aim with the edge of the scraper to slice \u2014 swipe through the blob for english. Hold still to charge a smash, then cut. The blob stretches, drips, and speeds up as the rally lives. On a phone the pit stands up: you scrape the bottom.</p></section>
-        <section><h3 className="mb-2 text-sm font-medium text-fg">Live $ROACH</h3><p className="text-sm leading-relaxed text-muted">Connect StarKey on Supra Mainnet and buy $ROACH on the Atmos Token Studio curve. Buys land in the vault. Table slips still settle in the arcade \u2014 the house does not sweep the chain. Paper chips stay for when the wallet is out of reach.</p></section>
+        <section><h3 className="mb-2 text-sm font-medium text-fg">The smear</h3><p className="text-sm leading-relaxed text-muted">Keep the gunk blob on your side of the glass. First to five takes the pit. Aim with the edge of the scraper to slice - swipe through the blob for english. Hold still to charge a smash, then cut. The blob stretches, drips, and speeds up as the rally lives. On a phone the pit stands up: you scrape the bottom.</p></section>
+        <section><h3 className="mb-2 text-sm font-medium text-fg">Live $ROACH</h3><p className="text-sm leading-relaxed text-muted">Connect StarKey on Supra Mainnet and buy $ROACH on the Atmos Token Studio curve. Buys land in the vault. Table slips still settle in the arcade - the house does not sweep the chain. Paper chips stay for when the wallet is out of reach.</p></section>
         <section><h3 className="mb-2 text-sm font-medium text-fg">The pit</h3><p className="text-sm leading-relaxed text-muted">Same loop a live Cockroach table would use: stake, play, settle. Odds already bake the house cut. Mutant pays {formatOdds(opponent.odds)}. Toxic rally pays {formatOdds(rally.odds)} if you last {rally.hits} hits.</p></section>
         <section><h3 className="mb-2 text-sm font-medium text-fg">Controls</h3><p className="text-sm leading-relaxed text-muted">Drag the glass. Edges cut the smear; a swipe adds english. On a phone, drag left and right. On a desk, W/S or arrows. Gamepad stick works. Pause with the button, or P / Escape. Folding a live slip burns the stake.</p></section>
         <section><h3 className="mb-2 text-sm font-medium text-fg">Broke</h3><p className="text-sm leading-relaxed text-muted">Paper vault under {BROKE_LINE} chips gets a dumpster for {DUMPSTER_DIVE} more. Live vault buys more $ROACH on Atmos. Roaches eat scraps.</p></section>
