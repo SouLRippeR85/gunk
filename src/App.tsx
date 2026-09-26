@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { Arena } from "@/components/game/Arena";
 import { BuyScreen } from "@/components/game/BuyScreen";
 import { ModeScreen, ResultScreen, RulesScreen, TitleScreen, WagerScreen } from "@/components/game/screens";
@@ -45,6 +46,7 @@ export function App() {
       {screen === "result" && <ResultScreen />}
       {screen === "rules" && <RulesScreen />}
       {screen === "buy" && <BuyScreen />}
+      <Analytics />
     </div>
   );
 }
